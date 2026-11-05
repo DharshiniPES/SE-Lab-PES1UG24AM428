@@ -43,12 +43,6 @@ SE-Lab-PES1UG24AM428/
 │   ├── Digital_Campus_Library_Component_Diagram.drawio             # Editable Draw.io source
 │   └── archive_coffee_kiosk_sample/                                # Archived Coffee Kiosk example assets
 │
-├── Lab-04-SRS-SAD-STP/                                             # Lab 4 (Milestone): SRS, SAD & Test Plan
-│   ├── README.md
-│   ├── SRS_Library_Reservation_Gateway (1).pdf                     # Software Requirements Specification
-│   ├── SAD_Library_Reservation_Gateway (1).pdf                     # Software Architecture & Design
-│   └── Test_Plan_Library_Reservation_Gateway.docx                  # Software Test Plan
-│
 ├── Lab-04-VibeCoding/                                              # Lab 4 (Individual): VibeCoding Tug of War
 │   ├── README.md
 │   ├── source_code/                                                # Feature-complete Python game
@@ -89,8 +83,7 @@ SE-Lab-PES1UG24AM428/
 * **Architecture:** Layered Architecture (Presentation, Business, Data & External Services layers)
 * **Deliverables:** Final report PDF, editable Word report, high-resolution PNG & SVG diagrams, and editable Draw.io model source.
 
-### Lab 4: Project Specifications & VibeCoding
-* **Specifications:** Software Requirements Specification (SRS), Software Architecture and Design (SAD), and Software Test Plan (STP).
+### Lab 4: VibeCoding — Tug of War Game Enhancement
 * **VibeCoding Game:** Fixed and enhanced Tug of War Python game (`56_tug_of_war`), before/after screen recordings, prompt engineering chat history, and verification report.
 
 ### Lab 5: Static Code Analysis (Pylint, Bandit, Flake8)
