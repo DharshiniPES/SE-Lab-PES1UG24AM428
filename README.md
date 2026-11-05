@@ -54,14 +54,23 @@ SE-Lab-PES1UG24AM428/
 │       ├── Lab4_VibeCoding_Chat_History.pdf
 │       └── Lab_4_VibeCoding_Student_handout.pdf
 │
-└── Lab-05-Static-Code-Analysis/                                    # Lab 5: Pylint, Bandit & Flake8
+├── Lab-05-Static-Code-Analysis/                                    # Lab 5: Pylint, Bandit & Flake8
+│   ├── README.md
+│   ├── car_rental.py                                               # Cleaned code (10.00/10, 0 security issues)
+│   ├── issues.md                                                   # Issue documentation table (13 issues)
+│   ├── reflection.md                                               # 4 in-depth reflection answers
+│   ├── pylint_report_before.txt & pylint_report_after.txt          # Pylint reports (4.94 -> 10.00)
+│   ├── bandit_report_before.txt & bandit_report_after.txt          # Bandit reports (11 issues -> 0)
+│   └── flake8_report_before.txt & flake8_report_after.txt          # Flake8 reports (25 issues -> 0)
+│
+└── Lab-06-Coverage-Analysis/                                       # Lab 6: Code & Branch Coverage
     ├── README.md
-    ├── car_rental.py                                               # Cleaned code (10.00/10, 0 security issues)
-    ├── issues.md                                                   # Issue documentation table (13 issues)
-    ├── reflection.md                                               # 4 in-depth reflection answers
-    ├── pylint_report_before.txt & pylint_report_after.txt          # Pylint reports (4.94 -> 10.00)
-    ├── bandit_report_before.txt & bandit_report_after.txt          # Bandit reports (11 issues -> 0)
-    └── flake8_report_before.txt & flake8_report_after.txt          # Flake8 reports (25 issues -> 0)
+    ├── course_registration.py                                      # Application under test
+    ├── CodeCoverageTest_course_registration.py                     # 100% Statement Coverage tests
+    ├── BranchCoverageTest_course_registration.py                   # 100% Branch Coverage tests (41 tests)
+    ├── test_course_registration.py                                 # Unified test runner (54 tests passing)
+    ├── coverage_line_report.txt                                    # Line coverage report (100%)
+    └── coverage_branch_report.txt                                  # Branch coverage report (100%)
 ```
 
 ---
@@ -94,3 +103,13 @@ SE-Lab-PES1UG24AM428/
   * **Bandit:** Eliminated all **11 security vulnerabilities** (0 High, 0 Medium, 0 Low)
   * **Flake8:** Resolved all **25 PEP 8 formatting/style violations** (0 remaining)
 * **Deliverables:** Cleaned `car_rental.py`, comprehensive `issues.md` remediation table, detailed `reflection.md` report, and before/after verification logs.
+
+
+### Lab 6: Code and Branch Coverage Analysis (pytest & coverage)
+* **Assigned System:** Course Registration (course_registration.py from SETAPESU26/L6_L7_56_course_registration)
+* **Personal Repository:** https://github.com/DharshiniPES/L6_L7_56_course_registration
+* **Coverage Results Achieved:**
+  * **Line / Statement Coverage:** Improved from **38%** (20 missed lines) to **100%** (32/32 statements)
+  * **Branch Coverage:** Improved from **32%** (18 partial/missed branches) to **100%** (24/24 branches)
+  * **Automated Unit Tests:** **54 comprehensive tests** (100% pass rate)
+* **Deliverables:** CodeCoverageTest_course_registration.py (line coverage commit), BranchCoverageTest_course_registration.py (branch coverage commit), execution logs, and full coverage analysis documentation.
