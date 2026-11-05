@@ -5,7 +5,9 @@
 **Department:** Department of Computer Science & Engineering (AIML), PES University  
 **Course:** Software Engineering Lab (SE Lab)  
 **Assigned Project:** Problem Statement #08 — Campus & Academic Operations: **Digital Campus Library Reservation Gateway**  
-**Assigned Use Case:** `UC-04: Pay Overdue Fine` (and FR-003: Overdue Fine Calculation & Settlement)
+**Assigned Use Case:** `UC-04: Pay Overdue Fine` (and FR-003: Overdue Fine Calculation & Settlement)  
+**Assigned Lab 4 System:** `56_tug_of_war` (Tug of War Game)  
+**Assigned Lab 5 System:** `L5_56_car-rental` (Car Rental System)  
 
 ---
 
@@ -40,11 +42,6 @@ SE-Lab-PES1UG24AM428/
 │   ├── Digital_Campus_Library_Component_Diagram.svg                # Scalable vector diagram (SVG)
 │   ├── Digital_Campus_Library_Component_Diagram.drawio             # Editable Draw.io source
 │   └── archive_coffee_kiosk_sample/                                # Archived Coffee Kiosk example assets
-│       ├── 480.drawio
-│       ├── Lab3_Coffee_Kiosk_Component_Diagram.drawio
-│       ├── Lab3_Coffee_Kiosk_Component_Diagram_FIXED.png
-│       ├── Lab3_Coffee_Kiosk_Justification.docx
-│       └── Lab3_Coffee_Kiosk_Original_Submission.pdf
 │
 ├── Lab-04-SRS-SAD-STP/                                             # Lab 4 (Milestone): SRS, SAD & Test Plan
 │   ├── README.md
@@ -52,22 +49,25 @@ SE-Lab-PES1UG24AM428/
 │   ├── SAD_Library_Reservation_Gateway (1).pdf                     # Software Architecture & Design
 │   └── Test_Plan_Library_Reservation_Gateway.docx                  # Software Test Plan
 │
-└── Lab-04-VibeCoding/                                              # Lab 4 (Individual): VibeCoding Tug of War
+├── Lab-04-VibeCoding/                                              # Lab 4 (Individual): VibeCoding Tug of War
+│   ├── README.md
+│   ├── source_code/                                                # Feature-complete Python game
+│   ├── videos/                                                     # 10s gameplay verification clips
+│   │   ├── TugOfWar_Before.mp4
+│   │   └── TugOfWar_After.mp4
+│   └── documentation/                                              # Reports & Prompts log
+│       ├── Lab4_Final_Submission_Report.pdf
+│       ├── Lab4_VibeCoding_Chat_History.pdf
+│       └── Lab_4_VibeCoding_Student_handout.pdf
+│
+└── Lab-05-Static-Code-Analysis/                                    # Lab 5: Pylint, Bandit & Flake8
     ├── README.md
-    ├── source_code/                                                # Feature-complete Python game
-    │   ├── main.py
-    │   ├── README.md
-    │   └── game/
-    │       ├── game_engine.py
-    │       ├── player.py
-    │       └── rope.py
-    ├── videos/                                                     # 10s gameplay verification clips
-    │   ├── TugOfWar_Before.mp4
-    │   └── TugOfWar_After.mp4
-    └── documentation/                                              # Reports & Prompts log
-        ├── Lab4_Final_Submission_Report.pdf
-        ├── Lab4_VibeCoding_Chat_History.pdf
-        └── Lab_4_VibeCoding_Student_handout.pdf
+    ├── car_rental.py                                               # Cleaned code (10.00/10, 0 security issues)
+    ├── issues.md                                                   # Issue documentation table (13 issues)
+    ├── reflection.md                                               # 4 in-depth reflection answers
+    ├── pylint_report_before.txt & pylint_report_after.txt          # Pylint reports (4.94 -> 10.00)
+    ├── bandit_report_before.txt & bandit_report_after.txt          # Bandit reports (11 issues -> 0)
+    └── flake8_report_before.txt & flake8_report_after.txt          # Flake8 reports (25 issues -> 0)
 ```
 
 ---
@@ -77,49 +77,27 @@ SE-Lab-PES1UG24AM428/
 ### Lab 1: Requirements Engineering & UML Use-Case Modelling
 * **Problem Statement:** #08 — Digital Campus Library Reservation Gateway
 * **Assigned Use Case:** `UC-04: Pay Overdue Fine`
-* **Actors:** Primary: Student Member | Supporting: Payment Gateway (external), Head Librarian (`«extend»` UC-06 Apply Fine Waiver)
-* **Key Deliverables:**
-  * `UC04_Pay_Overdue_Fine_Submission_Dharshini_V_PES1UG24AM428.pdf`: Complete compiled report.
-  * `Requirements_Table.docx`: Functional requirements (FR-001 to FR-005) and non-functional requirements (NFR-001 latency < 150ms, NFR-002 99.5% uptime).
-  * `Use_Case_Flow_Specification.docx`: Preconditions, postconditions, main success flow (8 steps), and alternate flow 5a (payment declined).
-  * `UML_Use_Case_Diagram.png` & `.svg`: Exported UML Use Case diagram.
+* **Deliverables:** PDF report, Requirements Table DOCX, Use-Case Flow Specification DOCX, UML Diagram PNG & SVG.
 
 ### Lab 2: Jira Agile — Backlog Creation, Story Point Estimation & Sprint Execution
 * **Project:** Digital Campus Library Reservation Gateway
-* **Epic:** `EPIC-01: Overdue Fine Payment & Settlement`
-* **Backlog:** 6 User Stories (`DCLRG-2` to `DCLRG-7`), 21 total story points.
-* **Sprint 1 Execution:** 4 stories planned (`DCLRG-2`, `DCLRG-3`, `DCLRG-4`, `DCLRG-5`), 13 story points burned down to 0 on the Scrum board.
-* **Key Deliverables:**
-  * `Jira_Lab2_Final_Submission_Dharshini_V_PES1UG24AM428.pdf`: Comprehensive submission document with story point estimates, Jira epic screenshots, sprint execution board, and burndown chart analysis.
-  * `Jira_Lab2_UC04_Individual_Report_Dharshini_V.docx`: Editable Word report.
+* **Epic:** `EPIC-01: Overdue Fine Payment & Settlement` (21 backlog story points, 13 points completed in Sprint 1)
+* **Deliverables:** Final report PDF with Jira screenshots and burndown analysis, editable Word report.
 
-### Lab 3: Component Modelling & Architecture (Updated)
-* **Assigned System:** Digital Campus Library Reservation Gateway (Problem Statement #08)
-* **Subsystem Focus:** Fine Management & Payment Settlement (`UC-04: Pay Overdue Fine` & FR-003)
-* **Selected Architectural Style:** **Layered Architecture**
-  * **Presentation Layer:** Student Member UI Component (Balance lookup, itemized fines, payment selection)
-  * **Business Layer:**
-    * *Authentication & Session Component* (Credential validation, SSO, role enforcement)
-    * *Fine Management Component (UC-04)* (Calculates ₹5/day overdue capped at ₹200, handles settlement, triggers receipts)
-    * *Notification Service Component* (Dispatches payment confirmation and itemized receipts via email)
-  * **Data & External Services Layer:**
-    * *Payment Gateway Adapter* (Interfaces Credit/Debit Card, UPI, and Campus Wallet)
-    * *Library Database Component* (Persists student fine balances, transaction logs, hold queue)
-    * *External Campus SMTP Server* (Campus mail relay)
-* **Interfaces (Ball & Socket):** `IAuthentication`, `IFineService`, `IPaymentGateway`, `IFineData/SQL`, `INotification`, `ISMTPRelay`.
-* **Key Deliverables:**
-  * `Lab3_FINAL_Submission_Dharshini_V_PES1UG24AM428.pdf` & `Lab3_FINAL_UC04_Dharshini_V_PES1UG24AM428.pdf`: Compiled final submission PDFs.
-  * `Lab3_Architecture_Justification_Dharshini_V_PES1UG24AM428.docx`: Editable Word justification document.
-  * `Digital_Campus_Library_Component_Diagram.png` & `.svg`: High-resolution component diagram exports.
-  * `Digital_Campus_Library_Component_Diagram.drawio`: Editable Draw.io source.
+### Lab 3: Component Modelling & Architecture
+* **System:** Digital Campus Library Reservation Gateway (`UC-04: Pay Overdue Fine` & FR-003)
+* **Architecture:** Layered Architecture (Presentation, Business, Data & External Services layers)
+* **Deliverables:** Final report PDF, editable Word report, high-resolution PNG & SVG diagrams, and editable Draw.io model source.
 
 ### Lab 4: Project Specifications & VibeCoding
-1. **SRS, SAD & Test Plan:**
-   * **SRS:** Complete functional and non-functional requirements specification for Digital Campus Library Reservation Gateway.
-   * **SAD:** Detailed architecture, layered component design, interface contracts, and sequence interactions.
-   * **STP:** Comprehensive test cases and validation matrices for fine calculation, payment gateway hooks, and hold queues.
-2. **VibeCoding Tug of War:**
-   * **Source Code:** Debugged and enhanced Python game (`main.py`, `game/` engine, rope dynamics, player controls).
-   * **Features:** Key input debounce, AI panic surge, rope tension animations, 45-second match timer, and Sudden Death mode.
-   * **Recordings:** Screen recordings before and after feature implementation.
-   * **Documentation:** Prompt work log and final test verification report.
+* **Specifications:** Software Requirements Specification (SRS), Software Architecture and Design (SAD), and Software Test Plan (STP).
+* **VibeCoding Game:** Fixed and enhanced Tug of War Python game (`56_tug_of_war`), before/after screen recordings, prompt engineering chat history, and verification report.
+
+### Lab 5: Static Code Analysis (Pylint, Bandit, Flake8)
+* **Assigned Script:** Car Rental System (`car_rental.py` from `SETAPESU26/L5_56_car-rental`)
+* **Personal Repository:** `https://github.com/DharshiniPES/L5_56_car-rental` (3 distinct commits for Bandit, Pylint, and Flake8 fixes)
+* **Results Achieved:**
+  * **Pylint Score:** Improved from **4.94 / 10.00** to **10.00 / 10.00** (exceeding > 9.5 target)
+  * **Bandit:** Eliminated all **11 security vulnerabilities** (0 High, 0 Medium, 0 Low)
+  * **Flake8:** Resolved all **25 PEP 8 formatting/style violations** (0 remaining)
+* **Deliverables:** Cleaned `car_rental.py`, comprehensive `issues.md` remediation table, detailed `reflection.md` report, and before/after verification logs.
