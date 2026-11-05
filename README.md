@@ -8,6 +8,7 @@
 **Assigned Use Case:** `UC-04: Pay Overdue Fine` (and FR-003: Overdue Fine Calculation & Settlement)  
 **Assigned Lab 4 System:** `56_tug_of_war` (Tug of War Game)  
 **Assigned Lab 5 System:** `L5_56_car-rental` (Car Rental System)  
+**Assigned Lab 6 & 7 System:** `L6_L7_56_course_registration` (Course Registration)
 
 ---
 
@@ -63,14 +64,27 @@ SE-Lab-PES1UG24AM428/
 │   ├── bandit_report_before.txt & bandit_report_after.txt          # Bandit reports (11 issues -> 0)
 │   └── flake8_report_before.txt & flake8_report_after.txt          # Flake8 reports (25 issues -> 0)
 │
-└── Lab-06-Coverage-Analysis/                                       # Lab 6: Code & Branch Coverage
+├── Lab-06-Coverage-Analysis/                                       # Lab 6: Code & Branch Coverage
+│   ├── README.md
+│   ├── course_registration.py                                      # Application under test
+│   ├── CodeCoverageTest_course_registration.py                     # 100% Statement Coverage tests
+│   ├── BranchCoverageTest_course_registration.py                   # 100% Branch Coverage tests (41 tests)
+│   ├── test_course_registration.py                                 # Unified test runner (54 tests passing)
+│   ├── coverage_line_report.txt                                    # Line coverage report (100%)
+│   ├── coverage_branch_report.txt                                  # Branch coverage report (100%)
+│   ├── PES1UG24AM428_DHARSHINI_V_LAB6.pdf                         # Official submission PDF report
+│   └── PES1UG24AM428_DHARSHINI_V_LAB6.docx                        # Official submission DOCX report
+│
+└── Lab-07-Fuzzing-Hypothesis/                                      # Lab 7: Fuzzing for Input Validation Bugs
     ├── README.md
-    ├── course_registration.py                                      # Application under test
-    ├── CodeCoverageTest_course_registration.py                     # 100% Statement Coverage tests
-    ├── BranchCoverageTest_course_registration.py                   # 100% Branch Coverage tests (41 tests)
-    ├── test_course_registration.py                                 # Unified test runner (54 tests passing)
-    ├── coverage_line_report.txt                                    # Line coverage report (100%)
-    └── coverage_branch_report.txt                                  # Branch coverage report (100%)
+    ├── course_registration_parser.py                               # Hardened & defensive parsing module
+    ├── course_registration_parser_buggy.py                         # Original naive parser (reproduces crashes)
+    ├── processor.py                                                # Entrypoint alias
+    ├── test_course_registration_parser.py                          # Hypothesis fuzz tests (@given(st.text() | st.none()))
+    ├── test_course_registration_parser_buggy.py                    # Fuzz tests demonstrating buggy crashes
+    ├── test_processor.py                                           # Test suite alias
+    ├── PES1UG24AM428_DHARSHINI_V_LAB7.pdf                          # Official Lab 7 PDF submission
+    └── PES1UG24AM428_DHARSHINI_V_LAB7.docx                         # Official Lab 7 DOCX submission
 ```
 
 ---
@@ -104,12 +118,21 @@ SE-Lab-PES1UG24AM428/
   * **Flake8:** Resolved all **25 PEP 8 formatting/style violations** (0 remaining)
 * **Deliverables:** Cleaned `car_rental.py`, comprehensive `issues.md` remediation table, detailed `reflection.md` report, and before/after verification logs.
 
-
 ### Lab 6: Code and Branch Coverage Analysis (pytest & coverage)
-* **Assigned System:** Course Registration (course_registration.py from SETAPESU26/L6_L7_56_course_registration)
-* **Personal Repository:** https://github.com/DharshiniPES/L6_L7_56_course_registration
+* **Assigned System:** Course Registration (`course_registration.py` from `SETAPESU26/L6_L7_56_course_registration`)
+* **Personal Repository:** `https://github.com/DharshiniPES/L6_L7_56_course_registration`
 * **Coverage Results Achieved:**
   * **Line / Statement Coverage:** Improved from **38%** (20 missed lines) to **100%** (32/32 statements)
   * **Branch Coverage:** Improved from **32%** (18 partial/missed branches) to **100%** (24/24 branches)
   * **Automated Unit Tests:** **54 comprehensive tests** (100% pass rate)
-* **Deliverables:** CodeCoverageTest_course_registration.py (line coverage commit), BranchCoverageTest_course_registration.py (branch coverage commit), execution logs, and full coverage analysis documentation.
+* **Deliverables:** `CodeCoverageTest_course_registration.py` (line coverage commit), `BranchCoverageTest_course_registration.py` (branch coverage commit), execution logs, and full coverage analysis documentation (`PES1UG24AM428_DHARSHINI_V_LAB6.pdf`).
+
+### Lab 7: Fuzzing for Input Validation Bugs (Hypothesis Property-Based Testing)
+* **Assigned System:** Course Registration Parser (`course_registration_parser.py` from `SETAPESU26/L6_L7_56_course_registration/LAB7`)
+* **Personal Repository:** `https://github.com/DharshiniPES/L6_L7_56_course_registration`
+* **Fuzzing & Hardening Results:**
+  * **Buggy Baseline:** Discovered 11 edge-case crashing inputs via Hypothesis (`code=None`, `code=''`, `code='CS'`, `text=None`, `text=''`, `text='4,,3'`, `line=None`, `line=''`, etc.) causing `AttributeError`, `ValueError`, and `IndexError`.
+  * **Hypothesis Test Suite:** Implemented `@given(st.text() | st.none())` tests wrapping calls in assertions that verify crash-free behavior.
+  * **Defensive Hardening:** Implemented safe type-guards, empty string fallbacks, token-level exception handling, and dictionary bounds checks.
+  * **Final Verification:** **3/3 Hypothesis property-based fuzz tests passing** with 0 crashes across hundreds of generated inputs.
+* **Deliverables:** `course_registration_parser.py` (fixed), `test_course_registration_parser.py` (Hypothesis suite), `PES1UG24AM428_DHARSHINI_V_LAB7.pdf` and `.docx` reports with complete reflection answers.

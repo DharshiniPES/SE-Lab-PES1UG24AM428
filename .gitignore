@@ -14,3 +14,12 @@ Desktop.ini
 .idea/
 *.swp
 *~
+
+# Python cache & coverage
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
